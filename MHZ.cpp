@@ -323,7 +323,7 @@ int32_t MHZ::readCO2PWM() {
     tl = 1004 - th;
     ppm_pwm = _range * (th - 2) / (th + tl - 4);
     if (getTimeDiff(start, millis()) > 90L * 1000) {  // Timeout after 90 seconds
-      _console->print("Unable to read value. Timeout.");
+      if (debug) _console->print("Unable to read value. Timeout.");
       break;
     }
   } while (th == 0);
